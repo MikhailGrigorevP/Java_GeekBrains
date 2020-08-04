@@ -15,7 +15,7 @@ public class TicTacToe {
     private static Scanner scanner = new Scanner(System.in);
     private static Random random = new Random();
 
-    private static final boolean SILLY_MODE = true;
+    private static final boolean SILLY_MODE = false;
 
     public static void main(String[] args) {
 
@@ -148,10 +148,56 @@ public class TicTacToe {
             } while(!isCellValid(x, y));
         }
         else{
+            int[] _x = new int[SIZE * SIZE];
+            int[] _y = new int[SIZE * SIZE];
+            // FOR 4*
+            int maxNear = 0;
+            //
+            int num = 0;
             for(int i = 0; i < SIZE; i++){
                 for(int j = 0; j < SIZE; j++){
-                    // Проверяем клетки по направлениям
+                    int near = 0;
+                    if(isCellValid(i, j)){
+                        if(i > 0 && map[i-1][j] == DOT_X) {
+                            near += 1;
+                            if(j > 0 && map[i-1][j-1] == DOT_X)
+                                near += 1;
+                            if(j < SIZE-1 && map[i-1][j+1] == DOT_X)
+                                near += 1;
+                        }
+                        if(i < SIZE-1 && map[i+1][j] == DOT_X) {
+                            near += 1;
+                            if(j > 0 && map[i+1][j-1] == DOT_X)
+                                near += 1;
+                            if(j < SIZE-1 && map[i+1][j+1] == DOT_X)
+                                near += 1;
+                        }
+                        if(j > 0 && map[i][j-1] == DOT_X)
+                            near += 1;
+                        if(j < SIZE-1 && map[i][j+1] == DOT_X)
+                            near += 1;
+                    }
+                    if(near > 0){
+                        if (num > 0 && near > maxNear)
+                            num = 0;
+                        _x[num] = i;
+                        _y[num] = j;
+                        num += 1;
+                        maxNear = num;
+                    }
                 }
+            }
+
+           int pos = random.nextInt(num);
+            if(num != 0) {
+                x = _x[pos];
+                y = _y[pos];
+            }
+            else{
+                do {
+                    x = random.nextInt(SIZE);
+                    y = random.nextInt(SIZE);
+                } while(!isCellValid(x, y));
             }
         }
 
