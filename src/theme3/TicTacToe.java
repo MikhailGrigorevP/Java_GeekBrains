@@ -1,3 +1,5 @@
+package theme3;
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -138,8 +140,8 @@ public class TicTacToe {
     }
 
     private static void computerTurn(){
-        int x = -1;
-        int y = -1;
+        int x;
+        int y;
 
         if(SILLY_MODE){
             do {

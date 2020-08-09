@@ -1,4 +1,4 @@
-package Theme4;
+package theme4;
 
 public class PersonTest {
 

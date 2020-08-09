@@ -1,4 +1,4 @@
-package Theme6;
+package theme6;
 
 import java.awt.*;
 import java.awt.event.*;

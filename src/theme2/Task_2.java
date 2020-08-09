@@ -1,3 +1,5 @@
+package theme2;
+
 import java.util.Arrays;
 
 public class Task_2 {
